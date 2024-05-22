@@ -211,7 +211,7 @@ class Cart {
     }
 
     checkout(){
-        this.#wantList.reduce((sum, toAdd) => 3.99+sum , 0)
+        return this.#wantList.reduce((sum, toAdd) => 3.99+sum , 0)
     }
 }
 
@@ -223,3 +223,4 @@ myCart.addToWantlist(arrayMoviesTv[2])
 
 myCart.removeFromWantlist(arrayMoviesTv[1])
 
+console.log("Da acquistare:", myCart.getWantList().length, " Costo:", myCart.checkout())
