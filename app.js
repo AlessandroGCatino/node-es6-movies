@@ -90,6 +90,9 @@ class Movie {
     setGenres(genres){
         this.#genre = genres
     }
+    getGenresArray(){
+        return this.#genre
+    }
     getGenres(){
         return this.#genre.join(", ")
     }
@@ -135,6 +138,8 @@ class TvSerie extends Movie{
 
 }
 
+//creazione array con le istanze delle classi
+
 const arrayMoviesTv = library.map((element) => {
     if(element.type === "movie"){
         return new Movie(element.title, element.year, element.genre, element.rating, element.type)
@@ -143,4 +148,78 @@ const arrayMoviesTv = library.map((element) => {
     }
 })
 
-// output.forEach( element => console.log(element.toString()))
+//function e test per MEDIAVOTI
+
+function avgVotes (collection, genere){
+
+    filteredCollection = collection.filter(element => element.getGenresArray().includes(genere))
+
+    return filteredCollection.reduce((curr, obj) => curr+obj.getRating(), null)/filteredCollection.length
+}
+console.log("Media voti per il genere Drama: ", avgVotes(arrayMoviesTv, "Drama"));
+
+//function e test per LISTA DEI GENERI
+
+function listGenres(collection){
+
+    let list = []
+
+    collection.forEach( element =>{
+        element.getGenresArray().forEach(el => {
+            if(!list.includes(el)){
+                list.push(el)
+            }
+        })
+    })
+    
+    return list
+}
+
+console.log("Lista generi: ", listGenres(arrayMoviesTv));
+
+// function e test array di toString
+
+function arrayOfStrings (collection, genere){
+
+    filteredCollection = collection.filter(element => element.getGenresArray().includes(genere))
+    let descriptions=[]
+    filteredCollection.forEach(element => descriptions.push(element.toString()))
+    return descriptions
+}
+console.log("Descrizione film e serie con genere Drama: ", arrayOfStrings(arrayMoviesTv, "Drama"));
+
+
+// BONUS Classe Cart e funzioni
+
+class Cart {
+    #wantList = [];
+
+    getWantList(){
+        return this.#wantList
+    }
+
+    addToWantlist(shop){
+        this.#wantList.push(shop)
+    }
+
+    removeFromWantlist(remove){
+        let indexToRemove = this.#wantList.indexOf(remove)
+
+        if(indexToRemove){
+            this.#wantList.splice(indexToRemove,1)
+        }
+    }
+
+    checkout(){
+        this.#wantList.reduce((sum, toAdd) => 3.99+sum , 0)
+    }
+}
+
+let myCart = new Cart();
+
+myCart.addToWantlist(arrayMoviesTv[0])
+myCart.addToWantlist(arrayMoviesTv[1])
+myCart.addToWantlist(arrayMoviesTv[2])
+
+myCart.removeFromWantlist(arrayMoviesTv[1])
+
