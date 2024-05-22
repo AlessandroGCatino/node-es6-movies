@@ -13,7 +13,6 @@ const library = [
         genre: ["Action", "Sci-Fi", "Thriller"],
         rating: 8.8,
         type: "movie",
-        seasons: null 
     },
     {
         title: "Stranger Things",
@@ -45,7 +44,6 @@ const library = [
         genre: ["Adventure", "Drama", "Sci-Fi"],
         rating: 8.6,
         type: "movie",
-        seasons: null 
     },
     {
         title: "Shogun",
@@ -64,6 +62,7 @@ class Movie {
     #genre;
     #rating;
     #type;
+    price= 3.99;
 
     constructor(title, year, genre, rating, type){
         this.#title = title;
@@ -211,7 +210,7 @@ class Cart {
     }
 
     checkout(){
-        return this.#wantList.reduce((sum, toAdd) => 3.99+sum , 0)
+        return this.#wantList.reduce((sum, toAdd) => toAdd.price+sum , 0)
     }
 }
 
