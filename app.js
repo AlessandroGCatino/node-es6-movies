@@ -156,7 +156,7 @@ function avgVotes (collection, genere){
 
     return filteredCollection.reduce((curr, obj) => curr+obj.getRating(), null)/filteredCollection.length
 }
-console.log("Media voti per il genere Drama: ", avgVotes(arrayMoviesTv, "Drama"));
+console.log("Media voti per il genere Drama: ", avgVotes(arrayMoviesTv, "Drama"), "\n");
 
 //function e test per LISTA DEI GENERI
 
@@ -175,7 +175,7 @@ function listGenres(collection){
     return list
 }
 
-console.log("Lista generi: ", listGenres(arrayMoviesTv));
+console.log("Lista generi: ", listGenres(arrayMoviesTv) , "\n");
 
 // function e test array di toString
 
@@ -186,7 +186,7 @@ function arrayOfStrings (collection, genere){
     filteredCollection.forEach(element => descriptions.push(element.toString()))
     return descriptions
 }
-console.log("Descrizione film e serie con genere Drama: ", arrayOfStrings(arrayMoviesTv, "Drama"));
+console.log("Descrizione film e serie con genere Drama: ", arrayOfStrings(arrayMoviesTv, "Drama"), "\n");
 
 
 // BONUS Classe Cart e funzioni
